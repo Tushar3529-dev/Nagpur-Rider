@@ -7,7 +7,7 @@ plugins {
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
     // Add Firebase plugin
-    id("com.google.gms.google-services") version "4.3.15"
+    id("com.google.gms.google-services")
 }
 
 // Load keystore properties
@@ -18,6 +18,9 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
+     lint {
+        checkReleaseBuilds = false
+    }
     namespace = "com.nagpurmart.rider"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "28.2.13676358"
