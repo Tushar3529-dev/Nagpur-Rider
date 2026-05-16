@@ -57,6 +57,17 @@ android {
 
     buildTypes {
         release {
+    isMinifyEnabled = false
+    isShrinkResources = false
+    proguardFiles(
+        getDefaultProguardFile("proguard-android-optimize.txt"),
+        "proguard-rules.pro"
+    )
+
+    // TEMPORARY: use debug signing
+    signingConfig = signingConfigs.getByName("debug")
+}
+       /*  release {
             isMinifyEnabled = false
             isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -64,7 +75,7 @@ android {
         }
         debug {
             signingConfig = signingConfigs.getByName("debug")
-        }
+        } */
     }
 }
 
