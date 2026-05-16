@@ -26,7 +26,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -51,20 +54,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAvw3X8JIkhHQfz_1RQ5IUp8Si2Xrzuymc',
-    appId: '1:437097852625:android:be5267f61f7c3c7b37dff0',
+    appId: '1:437097852625:android:3579147189c3117737dff0',
     messagingSenderId: '437097852625',
     projectId: 'nagpurmart-86ea5',
+    databaseURL: 'https://nagpurmart-86ea5-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'nagpurmart-86ea5.firebasestorage.app',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBJE6rVYSsw7jE6ASdJvbtBtidjJ8atUs0',
-    appId: '1:437097852625:ios:ecdc81a906b4754337dff0',
-    messagingSenderId: '437097852625',
-    projectId: 'nagpurmart-86ea5',
-    storageBucket: 'nagpurmart-86ea5.firebasestorage.app',
-    androidClientId: '437097852625-4oq3o8rr61udaf9aubrnjlc3ef237cra.apps.googleusercontent.com',
-    iosClientId: '437097852625-frpdn2na106o7eokute2uccijb3ir900.apps.googleusercontent.com',
-    iosBundleId: 'com.nagpurmart.rider',
   );
 }

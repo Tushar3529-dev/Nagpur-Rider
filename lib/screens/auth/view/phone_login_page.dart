@@ -56,7 +56,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [AppColors.borderColor, AppColors.borderColor],
+                colors: [AppColors.primaryColor, AppColors.secondaryColor],
               ),
             ),
             child: Column(

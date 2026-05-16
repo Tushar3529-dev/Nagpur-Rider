@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "437097852625",
+    "firebase_url": "https://nagpurmart-86ea5-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "nagpurmart-86ea5",
     "storage_bucket": "nagpurmart-86ea5.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:437097852625:android:ad6e531bb62847b237dff0",
+        "mobilesdk_app_id": "1:437097852625:android:591b455b5dd3d2f237dff0",
         "android_client_info": {
           "package_name": "com.nagpurmart.customer"
         }
@@ -51,7 +52,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:437097852625:android:be5267f61f7c3c7b37dff0",
+        "mobilesdk_app_id": "1:437097852625:android:3579147189c3117737dff0",
         "android_client_info": {
           "package_name": "com.nagpurmart.rider"
         }
@@ -95,7 +96,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:437097852625:android:6b774dff3f37c85937dff0",
+        "mobilesdk_app_id": "1:437097852625:android:91f12118f821e1cb37dff0",
         "android_client_info": {
           "package_name": "com.nagpurmart.seller"
         }
