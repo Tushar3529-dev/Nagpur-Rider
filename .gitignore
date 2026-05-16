@@ -1,0 +1,27 @@
+# Flutter/Dart/Pub
+.dart_tool/
+.packages
+.pub/
+build/
+
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Android
+android/.gradle/
+android/app/debug
+android/app/profile
+android/app/release
+
+# iOS
+ios/Flutter/.last_build_id
+
+# IDE
+.idea/
+.vscode/
+
+# Misc
+.DS_Store
+*.log
+*.lock
