@@ -23,7 +23,7 @@ class CustomCard extends StatelessWidget {
     this.height,
     this.padding,
     this.gradient,
-    this.borderRadius,
+    this.borderRadius=30.0,
     this.backgroundColor,
     this.border,
     this.boxShadow,
@@ -44,7 +44,7 @@ class CustomCard extends StatelessWidget {
             color:
                 backgroundColor ??
                 (isDarkTheme ? AppColors.cardDarkColor : Colors.white),
-            borderRadius: BorderRadius.circular(borderRadius ?? 16.r),
+            borderRadius: BorderRadius.circular( 30.0),
 
             border: Border.all(
               color:
@@ -76,7 +76,7 @@ class CustomCard extends StatelessWidget {
             color: Colors.transparent,
             child: InkWell(
               onTap: onTap,
-              borderRadius: BorderRadius.circular(borderRadius ?? 16.r),
+              borderRadius: BorderRadius.circular( 30.0),
               child: cardWidget,
             ),
           );
@@ -178,7 +178,7 @@ class CustomCardVariant extends StatelessWidget {
           width: width,
           height: height,
           padding: padding,
-          borderRadius: borderRadius,
+          borderRadius: borderRadius ?? 30.0,
           backgroundColor: backgroundColor,
           border:
               borderColor != null

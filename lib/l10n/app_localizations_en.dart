@@ -1854,7 +1854,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get preview => 'Preview';
 
   @override
-  String get hyperLocal => 'Hyper Local';
+  String get hyperLocal => 'NagpurMart-Rider';
 
   @override
   String get collectItemsStores => 'Collect items from stores';

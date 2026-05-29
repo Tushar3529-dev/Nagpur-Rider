@@ -187,7 +187,7 @@ class _EarningsListPageState extends State<EarningsListPage> {
                 AppColors.primaryColor.withValues(alpha: 0.03),
               ],
             ),
-            borderRadius: BorderRadius.circular(16.r),
+            borderRadius: BorderRadius.circular(30.0),
           ),
           padding: EdgeInsets.all(20.w),
           child: Column(
@@ -244,7 +244,7 @@ class _EarningsListPageState extends State<EarningsListPage> {
                     padding: EdgeInsets.all(10.w),
                     decoration: BoxDecoration(
                       color: AppColors.primaryColor.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(30.0),
                       boxShadow: [
                         BoxShadow(
                           color: AppColors.primaryColor.withValues(
@@ -278,7 +278,7 @@ class _EarningsListPageState extends State<EarningsListPage> {
         color: Theme.of(
           context,
         ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(30.0),
         border: Border.all(
           color: Theme.of(
             context,
@@ -359,13 +359,13 @@ class _EarningsListPageState extends State<EarningsListPage> {
                   )
                   : null,
           color: isSelected ? null : Colors.transparent,
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(30.0),
           boxShadow:
               isSelected
                   ? [
                     BoxShadow(
                       color: AppColors.primaryColor.withValues(alpha: 0.25),
-                      blurRadius: 8.r,
+                      blurRadius: 30.0,
                       offset: Offset(0, 3.h),
                     ),
                   ]

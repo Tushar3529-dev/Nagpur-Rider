@@ -505,7 +505,7 @@ class _AllCashCollectionPageState extends State<AllCashCollectionPage> {
                   ),
                   decoration: BoxDecoration(
                     color: _getStatusColor(collection.submissionStatus ?? ''),
-                    borderRadius: BorderRadius.circular(12.r),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: CustomText(
                     text: _getStatusDisplayText(

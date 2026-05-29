@@ -67,7 +67,7 @@ class CustomTextFormField extends StatelessWidget {
     this.borderColor,
     this.focusedBorderColor,
     this.errorBorderColor,
-    this.borderRadius = 16.0,
+    this.borderRadius = 30.0,
     this.borderWidth = 1.0,
     this.textStyle,
     this.labelStyle,

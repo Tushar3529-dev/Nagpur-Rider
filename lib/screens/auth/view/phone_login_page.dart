@@ -53,11 +53,13 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
           key: _formKey,
           child: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
+              color: Colors.white,
+           
+             /*  gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [AppColors.primaryColor, AppColors.secondaryColor],
-              ),
+                colors: [AppColors.primaryColor, Colors.white],
+              ), */
             ),
             child: Column(
               children: [
@@ -173,15 +175,15 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
       decoration: InputDecoration(
         hintText: 'Phone Number',
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(30.0),
           borderSide: BorderSide(color: Colors.grey.shade300),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(30.0),
           borderSide: BorderSide(color: Colors.grey.shade300),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(30.0),
           borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
         ),
         filled: true,

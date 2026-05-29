@@ -3601,7 +3601,7 @@ abstract class AppLocalizations {
   /// No description provided for @hyperLocal.
   ///
   /// In en, this message translates to:
-  /// **'Hyper Local'**
+  /// **'NagpurMart-Rider'**
   String get hyperLocal;
 
   /// No description provided for @collectItemsStores.

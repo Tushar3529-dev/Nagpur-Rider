@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 extension AppColors on ColorScheme {
   /* static const Color primaryColor = Color(0xFF088DC4); */
- static const Color primaryColor = Color(0xFFFF2D55);
+/*  static const Color primaryColor = Color(0xFFFF2D55); */
+static const Color primaryColor = Color(0xFF0047D9);// this is the final color code 
   /* static const Color secondaryColor = Color(0xFF088DC4); */
    static const Color secondaryColor = Color(0xFFFFC81E);
   static const Color backgroundColor = Color(0xFFFFFFFF);

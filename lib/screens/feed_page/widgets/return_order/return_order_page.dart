@@ -196,7 +196,7 @@ class _ReturnOrdersSectionState extends State<ReturnOrdersSection>
                         vertical: 12.h,
                       ),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.r),
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
                       elevation: 2,
                     ),
@@ -264,7 +264,7 @@ class _ReturnOrdersSectionState extends State<ReturnOrdersSection>
                           padding: EdgeInsets.all(8.h),
                           decoration: BoxDecoration(
                             color: Colors.green,
-                            borderRadius: BorderRadius.circular(20.r),
+                            borderRadius: BorderRadius.circular(30.0),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black.withValues(alpha: 0.1),
@@ -366,7 +366,7 @@ class _ReturnOrdersSectionState extends State<ReturnOrdersSection>
                     vertical: 12.h,
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                   elevation: 2,
                 ),
@@ -429,7 +429,7 @@ class _ReturnOrdersSectionState extends State<ReturnOrdersSection>
                 foregroundColor: Colors.white,
                 padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.h),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
                 elevation: 2,
               ),

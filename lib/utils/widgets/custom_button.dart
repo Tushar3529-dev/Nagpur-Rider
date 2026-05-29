@@ -58,14 +58,14 @@ class CustomButton extends StatelessWidget {
           shape:
               borderColor != null && borderWidth != null
                   ? RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      (borderRadius ?? 7).r,
+                    borderRadius: BorderRadius.circular(30.0,
+                     /*  (borderRadius ?? 7).r, */
                     ), // Make border radius responsive
                     side: BorderSide(color: borderColor!, width: borderWidth!),
                   )
                   : RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      (borderRadius ?? 7).r,
+                    borderRadius: BorderRadius.circular(30.0
+                     /*  (borderRadius ?? 7).r, */
                     ), // Make border radius responsive
                   ),
           elevation: 2,

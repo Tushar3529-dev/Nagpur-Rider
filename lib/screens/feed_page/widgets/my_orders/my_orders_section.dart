@@ -72,7 +72,7 @@ class _MyOrdersSectionState extends State<MyOrdersSection>
       isScrollControlled: true,
       context: context,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
       ),
       builder: (context) {
         return Container(
@@ -412,7 +412,7 @@ class _MyOrdersSectionState extends State<MyOrdersSection>
                         color: Theme.of(
                           context,
                         ).primaryColor.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(8.r),
+                        borderRadius: BorderRadius.circular(30.0),
                         border: Border.all(
                           color: Theme.of(context).primaryColor,
                           width: 1,

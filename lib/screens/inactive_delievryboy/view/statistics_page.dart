@@ -938,7 +938,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                           isSelected
                               ? AppColors.primaryColor
                               : Colors.transparent,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(30),
                     ),
                     child: Center(
                       child: CustomText(

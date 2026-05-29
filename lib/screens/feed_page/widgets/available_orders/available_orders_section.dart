@@ -191,7 +191,7 @@ class _AvailableOrdersSectionState extends State<AvailableOrdersSection> {
                         vertical: 12.h,
                       ),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.r),
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
                       elevation: 2,
                     ),
@@ -340,7 +340,7 @@ class _AvailableOrdersSectionState extends State<AvailableOrdersSection> {
                     vertical: 12.h,
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                   elevation: 2,
                 ),
@@ -403,7 +403,7 @@ class _AvailableOrdersSectionState extends State<AvailableOrdersSection> {
                 foregroundColor: Colors.white,
                 padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.h),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
                 elevation: 2,
               ),

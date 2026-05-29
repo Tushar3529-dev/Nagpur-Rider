@@ -60,11 +60,12 @@ class _LoginPageState extends State<LoginPage> {
           key: _formKey,
           child: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
+              color:Colors.white,
+            /*   gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [AppColors.primaryColor, AppColors.secondaryColor],
-              ),
+              ), */
             ),
             child: Column(
               children: [

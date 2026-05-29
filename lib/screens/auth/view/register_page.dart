@@ -221,11 +221,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 key: _formKey,
                 child: Container(
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    color:Colors.white,
+                    /* gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [AppColors.primaryColor, AppColors.secondaryColor],
-                    ),
+                    ), */
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
