@@ -105,7 +105,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  /* Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SizedBox(
@@ -133,5 +133,14 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
-  }
+  } */
+ Widget build(BuildContext context) {
+  return Scaffold(
+    body: Image.asset('assets/png/splash-rider.png',
+      width: double.infinity,
+      height: double.infinity,
+      fit: BoxFit.cover,
+    ),
+  );
+}
 }
