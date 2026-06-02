@@ -1,4 +1,4 @@
-const String appName = 'Nagpur Rider';
+const String appName = 'nagpurmart.in Rider';
 const String packageName = 'com.nagpur.rider';
 const String domainBaseUrl = 'https://admin.nagpurmart.in';
 const String baseUrl = '$domainBaseUrl/api/delivery-boy/';

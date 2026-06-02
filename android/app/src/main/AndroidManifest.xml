@@ -21,7 +21,7 @@ package="com.nagpurmart.rider">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" tools:node="remove"/>
 
     <application
-        android:label="Nagpur Mart Rider App"
+        android:label="nagpurmart.in Rider"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:enableOnBackInvokedCallback="true">
