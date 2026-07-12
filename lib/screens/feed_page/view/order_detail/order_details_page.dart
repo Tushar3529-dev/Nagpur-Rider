@@ -17,6 +17,8 @@ import '../../../system_settings/bloc/system_settings_event.dart';
 import '../../../system_settings/bloc/system_settings_state.dart';
 import '../../../system_settings/repo/system_settings_repo.dart';
 import '../../model/available_orders.dart';
+import '../../bloc/cancel_order/cancel_order_cubit.dart';
+import '../../bloc/cancel_order/cancel_order_state.dart';
 import '../../bloc/items_collected_bloc/items_collected_bloc.dart';
 import '../../bloc/items_collected_bloc/items_collected_event.dart';
 import '../../bloc/items_collected_bloc/items_collected_state.dart';
@@ -29,6 +31,7 @@ import '../../bloc/my_orders_bloc/my_orders_bloc.dart';
 import '../../bloc/my_orders_bloc/my_orders_event.dart';
 import '../../repo/order_details.dart';
 import '../../../../utils/widgets/custom_button.dart';
+import '../../../../utils/widgets/custom_textfield.dart';
 import '../../../../utils/widgets/reusable_bottom_sheet.dart';
 import '../../widgets/orderdetails_widgets/index.dart';
 import '../../../../router/app_routes.dart';
@@ -77,6 +80,7 @@ class OrderDetailsPageWithBloc extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ItemsCollectedBloc()),
+        BlocProvider(create: (context) => CancelOrderCubit()),
         BlocProvider(create: (context) => OrderDetailsBloc(OrderDetailsRepo())),
         BlocProvider(
           create: (context) => SystemSettingsBloc(SystemSettingsRepo()),
@@ -111,6 +115,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage>
   bool _codPopupShown = false;
   final Set<String> _processingItemIds = {};
   bool _isCollectingAll = false;
+  bool _navigateBackIfCancelRefreshFails = false;
 
   // Confetti controller for celebration animation
   late ConfettiController _confettiController;
@@ -370,9 +375,26 @@ class _OrderDetailsPageState extends State<OrderDetailsPage>
                     }
                   }
                 });
+                if (_navigateBackIfCancelRefreshFails &&
+                    _isCancelledStatus(state.order.status)) {
+                  _navigateBackIfCancelRefreshFails = false;
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    if (mounted) {
+                      _navigateBackAfterCancel();
+                    }
+                  });
+                }
               } else if (state is OrderDetailsError) {
-                setState(() {
-                });
+                if (_navigateBackIfCancelRefreshFails) {
+                  _navigateBackIfCancelRefreshFails = false;
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    if (mounted) {
+                      _navigateBackAfterCancel();
+                    }
+                  });
+                } else {
+                  setState(() {});
+                }
               }
             },
             builder: (context, state) {
@@ -636,6 +658,10 @@ class _OrderDetailsPageState extends State<OrderDetailsPage>
         onPressed: () => _showEarningsPopup(),
         buttonColor: AppColors.primaryColor,
         textColor: Colors.white,
+        secondaryButtonText: _canCancelOrder() ? 'Cancel Order' : null,
+        onSecondaryPressed: _showCancelOrderDialog,
+        isSecondaryLoading: _isCancelOrderLoading(),
+        isSecondaryEnabled: !_isCancelOrderLoading(),
       );
     }
 
@@ -676,6 +702,10 @@ class _OrderDetailsPageState extends State<OrderDetailsPage>
         },
         buttonColor: AppColors.primaryColor,
         textColor: Colors.white,
+        secondaryButtonText: _canCancelOrder() ? 'Cancel Order' : null,
+        onSecondaryPressed: _showCancelOrderDialog,
+        isSecondaryLoading: _isCancelOrderLoading(),
+        isSecondaryEnabled: !_isCancelOrderLoading(),
       );
     }
 
@@ -686,6 +716,10 @@ class _OrderDetailsPageState extends State<OrderDetailsPage>
         onPressed: _showEarningsPopup,
         buttonColor: AppColors.primaryColor,
         textColor: Colors.white,
+        secondaryButtonText: _canCancelOrder() ? 'Cancel Order' : null,
+        onSecondaryPressed: _showCancelOrderDialog,
+        isSecondaryLoading: _isCancelOrderLoading(),
+        isSecondaryEnabled: !_isCancelOrderLoading(),
       );
     }
 
@@ -1064,6 +1098,133 @@ class _OrderDetailsPageState extends State<OrderDetailsPage>
       widget.sourceTab,
       widget.from,
     );
+  }
+
+  bool _isCancelOrderLoading() {
+    return context.watch<CancelOrderCubit>().state is CancelOrderLoading;
+  }
+
+  bool _canCancelOrder() {
+    final status = _fetchedOrder?.status?.toLowerCase();
+    return status != null &&
+        status != 'delivered' &&
+        !_isCancelledStatus(status);
+  }
+
+  bool _isCancelledStatus(String? status) {
+    final normalizedStatus = status?.toLowerCase();
+    return normalizedStatus == 'cancelled' || normalizedStatus == 'canceled';
+  }
+
+  Future<void> _showCancelOrderDialog() async {
+    final noteController = TextEditingController();
+    final parentContext = context;
+
+    await showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) {
+        return BlocProvider.value(
+          value: parentContext.read<CancelOrderCubit>(),
+          child: BlocConsumer<CancelOrderCubit, CancelOrderState>(
+            listener: (context, state) {
+              if (state is CancelOrderSuccess) {
+                Navigator.of(dialogContext).pop();
+                _handleCancelOrderSuccess(state.message);
+              } else if (state is CancelOrderFailure) {
+                ToastManager.show(
+                  context: parentContext,
+                  message: state.errorMessage,
+                  type: ToastType.error,
+                );
+              }
+            },
+            builder: (context, state) {
+              final isLoading = state is CancelOrderLoading;
+
+              return AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.r),
+                ),
+                title: CustomText(
+                  text: 'Cancel Order',
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+                content: CustomTextFormField(
+                  controller: noteController,
+                  hintText: 'Enter cancellation reason (optional)',
+                  minLines: 3,
+                  maxLines: 5,
+                  enabled: !isLoading,
+                  borderRadius: 8.r,
+                  textInputAction: TextInputAction.newline,
+                  keyboardType: TextInputType.multiline,
+                ),
+                actions: [
+                  TextButton(
+                    onPressed:
+                        isLoading
+                            ? null
+                            : () => Navigator.of(dialogContext).pop(),
+                    child: CustomText(
+                      text: 'Close',
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                  CustomButton(
+                    width: 132.w,
+                    height: 42.h,
+                    textSize: 14.sp,
+                    text: 'Cancel Order',
+                    isLoading: isLoading,
+                    onPressed:
+                        isLoading
+                            ? null
+                            : () {
+                              context.read<CancelOrderCubit>().cancelOrder(
+                                orderId: widget.orderId,
+                                cancellationNote: noteController.text.trim(),
+                              );
+                            },
+                    backgroundColor: AppColors.errorColor,
+                    textColor: Colors.white,
+                  ),
+                ],
+              );
+            },
+          ),
+        );
+      },
+    );
+
+    noteController.dispose();
+  }
+
+  void _handleCancelOrderSuccess(String message) {
+    ToastManager.show(
+      context: context,
+      message: message,
+      type: ToastType.success,
+    );
+
+    context.read<AvailableOrdersBloc>().add(
+      AllAvailableOrdersList(forceRefresh: true),
+    );
+    context.read<MyOrdersBloc>().add(AllMyOrdersList(forceRefresh: true));
+
+    _navigateBackIfCancelRefreshFails = true;
+    context.read<OrderDetailsBloc>().add(FetchOrderDetails(widget.orderId));
+  }
+
+  void _navigateBackAfterCancel() {
+    final targetTab = _getTargetTabForNavigation();
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go('${AppRoutes.feed}?tab=$targetTab');
+    }
   }
 }
 

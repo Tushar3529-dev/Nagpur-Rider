@@ -78,6 +78,13 @@ class ActionBottomSheet extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isLoading;
   final bool isEnabled;
+  final String? secondaryButtonText;
+  final VoidCallback? onSecondaryPressed;
+  final bool isSecondaryLoading;
+  final bool isSecondaryEnabled;
+  final Color? secondaryButtonColor;
+  final Color? secondaryTextColor;
+  final Color? secondaryBorderColor;
   final Color? buttonColor;
   final Color? textColor;
   final String? subtitle;
@@ -89,6 +96,13 @@ class ActionBottomSheet extends StatelessWidget {
     required this.onPressed,
     this.isLoading = false,
     this.isEnabled = true,
+    this.secondaryButtonText,
+    this.onSecondaryPressed,
+    this.isSecondaryLoading = false,
+    this.isSecondaryEnabled = true,
+    this.secondaryButtonColor,
+    this.secondaryTextColor,
+    this.secondaryBorderColor,
     this.buttonColor,
     this.textColor,
     this.subtitle,
@@ -106,17 +120,46 @@ class ActionBottomSheet extends StatelessWidget {
         child: Container(
           width: double.infinity,
           color: Theme.of(context).colorScheme.sameColorChange,
-          child: CustomButton(
-            padding: EdgeInsets.zero,
-            textSize: 15.sp,
-            text: buttonText,
-            onPressed: isEnabled ? onPressed : null,
-            isLoading: isLoading,
-            backgroundColor: buttonColor ?? AppColors.primaryColor,
-            textColor: textColor ?? Colors.white,
-            borderRadius: 5.r,
-            // padding:  EdgeInsets.symmetric(vertical: 16.h),
-            textStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CustomButton(
+                padding: EdgeInsets.zero,
+                textSize: 15.sp,
+                text: buttonText,
+                onPressed: isEnabled ? onPressed : null,
+                isLoading: isLoading,
+                backgroundColor: buttonColor ?? AppColors.primaryColor,
+                textColor: textColor ?? Colors.white,
+                borderRadius: 5.r,
+                // padding:  EdgeInsets.symmetric(vertical: 16.h),
+                textStyle: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              if (secondaryButtonText != null &&
+                  onSecondaryPressed != null) ...[
+                SizedBox(height: 12.h),
+                CustomButton(
+                  padding: EdgeInsets.zero,
+                  textSize: 15.sp,
+                  text: secondaryButtonText!,
+                  onPressed: isSecondaryEnabled ? onSecondaryPressed : null,
+                  isLoading: isSecondaryLoading,
+                  backgroundColor: secondaryButtonColor ?? AppColors.errorColor,
+                  textColor: secondaryTextColor ?? Colors.white,
+                  borderColor: secondaryBorderColor ?? AppColors.errorColor,
+                  borderWidth: 1,
+                  borderRadius: 5.r,
+                  textStyle: TextStyle(
+                    color: secondaryTextColor ?? Colors.white,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ],
           ),
         ),
       ),
